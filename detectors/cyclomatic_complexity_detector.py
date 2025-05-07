@@ -30,7 +30,8 @@ def detect_cyclomatic_complexity(node, source_lines, filepath, filename):
                 "filename": filename,
                 "filepath": filepath,
                 "startline": start_line,
-                "endline": end_line
+                "endline": end_line,
+                "code": "CYC"
             })
         elif isinstance(node, javalang.tree.ClassDeclaration) and complexity > 80:
             smells.append({

@@ -44,11 +44,12 @@ def upload_project():
             filename = filepath.split("/")[-1]
             for smell in smells:
                 results.append({
-                    "filename": filename,
-                    "filepath": filepath,
-                    "startline": smell["startline"],
-                    "endline": smell["endline"],
-                    "codeSmellType": smell["codeSmellType"]
+                    "fileName": filename,
+                    "filePath": filepath,
+                    "startLine": smell["startline"],
+                    "endLine": smell["endline"],
+                    "smellType": smell["codeSmellType"],
+                    "code":smell["code"]
                 })
         
         logger.debug("Smell detection completed, returning %d smells", len(results))

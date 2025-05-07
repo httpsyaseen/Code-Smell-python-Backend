@@ -46,7 +46,8 @@ def detect_excessive_parameter_list(node, source_lines, filepath, filename):
                 "filename": filename,
                 "filepath": filepath,
                 "startline": start_line,
-                "endline": end_line
+                "endline": end_line,
+                "code": "EXP"
             }
     
     return None

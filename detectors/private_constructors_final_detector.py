@@ -22,6 +22,7 @@ def detect_private_constructors_final(node, source_lines, filepath, filename):
                 "filename": filename,
                 "filepath": filepath,
                 "startline": start_line,
-                "endline": end_line
+                "endline": end_line,
+                "code": "PRV"
             }
     return None
