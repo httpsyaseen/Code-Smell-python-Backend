@@ -37,7 +37,8 @@ def detect_nested_if(node, source_lines, filepath, filename):
                 "filepath": filepath,
                 "startline": start_line,
                 "endline": end_line,
-                "code": "NED"
+                "code": "NED",
+                "category": "design"
             }
 
     return None

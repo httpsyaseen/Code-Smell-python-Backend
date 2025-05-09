@@ -20,6 +20,7 @@ def detect_useless_overriding(node, source_lines, filepath, filename):
                         "filepath": filepath,
                         "startline": start_line,
                         "endline": end_line,
-                        "code": "USD"
+                        "code": "USD",
+                        "category": "design"
                     }
     return None

@@ -21,6 +21,7 @@ def detect_unchecked_exceptions(node, source_lines, filepath, filename):
                         "filepath": filepath,
                         "startline": start_line,
                         "endline": end_line,
-                        "code": "UCD"
+                        "code": "UCD",
+                        "category": "design"
                     }
     return None

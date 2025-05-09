@@ -18,6 +18,7 @@ def detect_too_many_methods(node, source_lines, filepath, filename):
                 "filepath": filepath,
                 "startline": start_line,
                 "endline": end_line,
-                "code": "TMM"
+                "code": "TMM",
+                "category": "design"
             }
     return None

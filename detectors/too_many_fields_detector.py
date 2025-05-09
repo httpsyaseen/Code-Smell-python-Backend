@@ -18,6 +18,7 @@ def detect_too_many_fields(node, source_lines, filepath, filename):
                 "filepath": filepath,
                 "startline": start_line,
                 "endline": end_line,
-                "code": "TMF"
+                "code": "TMF",
+                "category": "design"
             }
     return None

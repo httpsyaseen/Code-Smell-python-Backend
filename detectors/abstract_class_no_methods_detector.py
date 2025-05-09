@@ -17,6 +17,7 @@ def detect_abstract_class_no_methods(node, source_lines, filepath, filename):
                 "filepath": filepath,
                 "startline": start_line,
                 "endline": end_line,
-                "code": "ABS"
+                "code": "ABS",
+                "category": "design"
             }
     return None

@@ -22,6 +22,7 @@ def detect_excessive_public_counts(node, source_lines, filepath, filename):
                 "filepath": filepath,
                 "startline": start_line,
                 "endline": end_line,
-                "code": "EPC"
+                "code": "EPC",
+                        "category": "design"
             }
     return None

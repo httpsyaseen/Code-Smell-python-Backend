@@ -39,7 +39,8 @@ def detect_ncss(node, source_lines, filepath, filename):
                 "startline": start_line,
                 "endline": end_line,
                 "ncss": ncss,
-                "code": "NSD"
+                "code": "NSD",
+                        "category": "design"
             })
 
         elif isinstance(node, javalang.tree.ClassDeclaration) and ncss > 1500:

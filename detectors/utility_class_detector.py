@@ -27,6 +27,7 @@ def detect_utility_class(node, source_lines, filepath, filename):
                 "filepath": filepath,
                 "startline": start_line,
                 "endline": end_line,
-                "code": "UTD"
+                "code": "UTD",
+                "category": "design"
             }
     return None
