@@ -13,6 +13,7 @@ def detect_excessive_imports(node, source_lines, filepath, filename):
                 "startline": start_line,
                 "endline": end_line,
                 "code": "EXI",
-                "category": "design"
+                "category": "design",
+                "weight": 3
             }
     return None

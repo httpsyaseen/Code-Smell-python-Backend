@@ -15,6 +15,7 @@ def detect_raw_exception_types(node, source_lines, filepath, filename):
                         "startline": start_line,
                         "endline": start_line,
                         "code": "RWD",
-                        "category": "design"
+                        "category": "design",
+                        "weight": 3
                     }
     return None

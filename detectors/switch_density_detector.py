@@ -31,7 +31,8 @@ def detect_switch_density(node, source_lines, filepath, filename):
                         "startline": start_line,
                         "endline": end_line,
                         "code": "SWD",
-                        "category": "design"
+                        "category": "design",
+                        "weight": 3
                     }
         return None
     return None
