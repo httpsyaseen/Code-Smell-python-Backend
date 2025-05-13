@@ -1,6 +1,6 @@
 import zipfile
 import javalang
-from detectors import (
+from detectors.design import (
     ncss_detector,
     utility_class_detector,
     useless_overriding_detector,
@@ -19,6 +19,17 @@ from detectors import (
     nested_if_detector,
     abstract_class_no_methods_detector
 )
+
+from detectors.best_practices import (
+    reassigning_catch_variables_detector,
+    reassigning_loop_variables_detector,
+    reassigning_parameters_detector,
+    result_set_check_detector,
+    expensive_log_statement_detector,
+    implicit_functional_interface_detector,
+    literals_first_in_comparison_detector,
+    unused_local_variable_detector
+) 
 
 def analyze_code(content, filepath):
     smells = []
@@ -45,7 +56,15 @@ def analyze_code(content, filepath):
             raw_exception_types_detector.detect_raw_exception_types,
             null_pointer_exception_detector.detect_null_pointer_exception,
             nested_if_detector.detect_nested_if,
-            abstract_class_no_methods_detector.detect_abstract_class_no_methods
+            abstract_class_no_methods_detector.detect_abstract_class_no_methods,
+            reassigning_catch_variables_detector.detect_reassigning_catch_variables,
+            reassigning_loop_variables_detector.detect_reassigning_loop_variables,
+            reassigning_parameters_detector.detect_reassigning_parameters,
+            result_set_check_detector.detect_result_set_check,
+            expensive_log_statement_detector.detect_expensive_log_statement,
+            implicit_functional_interface_detector.detect_implicit_functional_interface,
+            literals_first_in_comparison_detector.detect_literals_first_in_comparison,
+            unused_local_variable_detector.detect_unused_local_variable
         ]
         for path, node in javalang.ast.walk_tree(tree):
             for detector in detectors:
