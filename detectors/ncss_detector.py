@@ -40,7 +40,7 @@ def detect_ncss(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "ncss": ncss,
                 "code": "NSD",
-                "category": "design",
+                "category": "Design",
                 "weight": 3
             })
 
@@ -53,7 +53,7 @@ def detect_ncss(node, source_lines, filepath, filename):
                 "code":"GOD",
                 "endline": end_line,
                 "ncss": ncss,
-                "category": "design",
+                "category": "Design",
                 "weight": 3
             })
 

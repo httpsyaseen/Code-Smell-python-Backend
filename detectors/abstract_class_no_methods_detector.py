@@ -4,6 +4,7 @@ def detect_abstract_class_no_methods(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.ClassDeclaration):
         if 'abstract' in node.modifiers and not node.methods:
             start_line = node.position.line if node.position else 1
+            
             brace_count = 0
             end_line = start_line
             for i, line in enumerate(source_lines[start_line-1:], start=start_line):
@@ -18,7 +19,7 @@ def detect_abstract_class_no_methods(node, source_lines, filepath, filename):
                 "startline": start_line,
                 "endline": end_line,
                 "code": "ABS",
-                "category": "design",
+                "category": "Design",
                 "weight": 3
             }
     return None

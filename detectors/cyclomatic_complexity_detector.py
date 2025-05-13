@@ -32,7 +32,7 @@ def detect_cyclomatic_complexity(node, source_lines, filepath, filename):
                 "startline": start_line,
                 "endline": end_line,
                 "code": "CYC",
-                "category": "design",
+                "category": "Design",
                 "weight": 3
             })
         elif isinstance(node, javalang.tree.ClassDeclaration) and complexity > 80:
@@ -42,7 +42,7 @@ def detect_cyclomatic_complexity(node, source_lines, filepath, filename):
                 "filepath": filepath,
                 "code": "CYC",
                 "startline": start_line,
-                "category": "design",
+                "category": "Design",
                 "endline": end_line,
                 "weight": 3
             })

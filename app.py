@@ -49,9 +49,9 @@ def upload_project():
                     "startLine": smell["startline"],
                     "endLine": smell["endline"],
                     "smellType": smell["codeSmellType"],
-                    "code":smell["code"],
-                    "category":smell["category"],
-                    "weight":smell["weight"]
+                    "code": smell["code"],
+                    "category": smell["category"].capitalize(),
+                    "weight": smell["weight"]
                 })
         
         logger.debug("Smell detection completed, returning %d smells", len(results))
