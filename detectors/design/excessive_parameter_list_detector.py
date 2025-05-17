@@ -7,7 +7,7 @@ def detect_excessive_parameter_list(node, source_lines, filepath, filename):
         param_count = len(node.parameters)
         
         # Debug print to verify parameter count
-        print(f"Detected method/constructor '{node.name}' with {param_count} parameters")
+        # print(f"Detected method/constructor '{node.name}' with {param_count} parameters")
         
         # Threshold check
         if param_count > 10:
@@ -15,7 +15,7 @@ def detect_excessive_parameter_list(node, source_lines, filepath, filename):
             if node.position and node.position.line:
                 start_line = node.position.line
             else:
-                print(f"Warning: {node.name} has no position info")
+                # print(f"Warning: {node.name} has no position info")
                 return None  # Skip if position is unknown
             
             # Initialize end_line and attempt to find the closing brace
@@ -37,7 +37,7 @@ def detect_excessive_parameter_list(node, source_lines, filepath, filename):
                             end_line = i + 1  # Lines are 1-based
                             break
                 except Exception as e:
-                    print(f"Error determining end line: {e}")
+                    # print(f"Error determining end line: {e}")
                     end_line = start_line  # Fallback to start line
             
             # Return the detected smell

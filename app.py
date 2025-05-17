@@ -50,7 +50,7 @@ def upload_project():
                     "endLine": smell["endline"],
                     "smellType": smell["codeSmellType"],
                     "code": smell["code"],
-                    "category": smell["category"].capitalize(),
+                    "category": smell["category"],
                     "weight": smell["weight"]
                 })
         

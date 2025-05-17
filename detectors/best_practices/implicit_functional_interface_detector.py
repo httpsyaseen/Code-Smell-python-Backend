@@ -50,7 +50,7 @@ def detect_implicit_functional_interface(node, source_lines, filepath, filename)
             "startline":     ln,
             "endline":       ln,
             "code":          "IFI",
-            "category":      "best_practices",
+            "category":      "Best Practices",
             "weight":        2
         }]
 

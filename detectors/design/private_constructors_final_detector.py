@@ -25,6 +25,6 @@ def detect_private_constructors_final(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "PRV",
                 "category": "Design",
-                "weight": 3
+                "weight": 4
             }
     return None

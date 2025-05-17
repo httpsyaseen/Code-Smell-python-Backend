@@ -87,6 +87,6 @@ def detect_expensive_log_statement(node, source_lines, filepath, filename, **kwa
         "startline":     ln,
         "endline":       ln,
         "code":          "ELS",
-        "category":      "best_practices",
+        "category":      "Best Practices",
         "weight":        2
     }]

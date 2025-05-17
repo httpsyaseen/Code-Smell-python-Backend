@@ -1,17 +1,55 @@
 import javalang
 
+def is_getter(method):
+    return (
+        (method.name.startswith('get') or method.name.startswith('is'))
+        and len(method.parameters) == 0
+        and method.return_type
+        and method.return_type.name != 'void'
+    )
+
+def is_setter(method):
+    return (
+        method.name.startswith('set')
+        and len(method.parameters) == 1
+        and method.return_type
+        and method.return_type.name == 'void'
+    )
+
 def detect_too_many_methods(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.ClassDeclaration):
-        method_count = len(node.methods)
+        non_getter_setter_methods = [
+            method for method in node.methods
+            if not (is_getter(method) or is_setter(method))
+        ]
+
+        method_count = len(non_getter_setter_methods)
+      
+
         if method_count > 10:
             start_line = node.position.line if node.position else 1
-            brace_count = 0
-            end_line = start_line
-            for i, line in enumerate(source_lines[start_line-1:], start=start_line):
-                brace_count += line.count('{') - line.count('}')
-                if brace_count == 0 and '}' in line:
-                    end_line = i
+
+            # Find the actual starting line of the class body (where the first '{' is)
+            body_start_line = -1
+            for i in range(start_line - 1, len(source_lines)):
+                if '{' in source_lines[i]:
+                    body_start_line = i + 1  # Convert index to line number
                     break
+
+            if body_start_line == -1:
+                body_start_line = start_line  # fallback
+
+            # Begin brace counting from the body start
+            brace_count = 0
+            end_line = body_start_line
+
+            for i in range(body_start_line - 1, len(source_lines)):
+                line = source_lines[i]
+                brace_count += line.count('{') - line.count('}')
+                if brace_count == 0:
+                    end_line = i + 1  # Convert index to line number
+                    break
+
             return {
                 "codeSmellType": "Too Many Methods",
                 "filename": filename,
@@ -22,4 +60,5 @@ def detect_too_many_methods(node, source_lines, filepath, filename):
                 "category": "Design",
                 "weight": 3
             }
+
     return None

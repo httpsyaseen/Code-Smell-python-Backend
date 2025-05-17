@@ -23,6 +23,6 @@ def detect_unchecked_exceptions(node, source_lines, filepath, filename):
                         "endline": end_line,
                         "code": "UCD",
                         "category": "Design",
-                        "weight": 3
+                        "weight": 4
                     }
     return None

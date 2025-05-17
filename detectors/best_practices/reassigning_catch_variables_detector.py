@@ -29,7 +29,7 @@ def detect_reassigning_catch_variables(node, source_lines, filepath, filename, a
                         "startline": start_line,
                         "endline": start_line,
                         "code": "RCV",
-                        "category": "best_practices",
+                        "category": "Best Practices",
                         "weight": 3
                     })
 

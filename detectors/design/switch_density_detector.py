@@ -16,7 +16,9 @@ def detect_switch_density(node, source_lines, filepath, filename):
                             total_cases += 1  # Single case label
 
                 if total_cases > 10:
-                    start_line = node.position.line if node.position else 1
+                    # ✅ Use the position of the switch statement
+                    start_line = child.position.line if child.position else (node.position.line if node.position else 1)
+
                     brace_count = 0
                     end_line = start_line
                     for i, line in enumerate(source_lines[start_line - 1:], start=start_line):
@@ -24,6 +26,7 @@ def detect_switch_density(node, source_lines, filepath, filename):
                         if brace_count == 0 and '}' in line:
                             end_line = i
                             break
+
                     return {
                         "codeSmellType": "High Switch Density",
                         "filename": filename,

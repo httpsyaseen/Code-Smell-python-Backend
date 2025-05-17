@@ -58,7 +58,7 @@ def detect_unused_local_variable(node, source_lines, filepath, filename):
                 "startline":     ln,
                 "endline":       ln,
                 "code":          "ULV",
-                "category":      "best_practices",
+                "category":      "Best Practices",
                 "weight":        3
             })
 

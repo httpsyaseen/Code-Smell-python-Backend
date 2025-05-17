@@ -27,6 +27,6 @@ def detect_result_set_check(node, source_lines, filepath, filename):
         "startline":     line,
         "endline":       line,
         "code":          "RSC",
-        "category":      "best_practices",
+        "category":      "Best Practices",
         "weight":        3
     }]

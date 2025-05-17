@@ -43,7 +43,7 @@ def detect_literals_first_in_comparison(node, source_lines, filepath, filename):
             "startline":     ln,
             "endline":       ln,
             "code":          "LFSC",
-            "category":      "best_practices",
+            "category":      "Best Practices",
             "weight":        3
         }]
 

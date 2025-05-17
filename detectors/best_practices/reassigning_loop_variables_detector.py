@@ -82,7 +82,7 @@ def detect_reassigning_loop_variables(node, source_lines, filepath, filename,
                     "startline": line,
                     "endline":   line,
                     "code":      "RLV",
-                    "category":  "best_practices",
+                    "category":  "Best Practices",
                     "weight":    3
                 })
 

@@ -15,6 +15,6 @@ def detect_null_pointer_exception(node, source_lines, filepath, filename):
                         "endline": start_line,
                         "code": "NPD",
                         "category": "Design",
-                        "weight": 3
+                        "weight": 4
                     }
     return None

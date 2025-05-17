@@ -46,7 +46,7 @@ def detect_reassigning_parameters(node, source_lines, filepath, filename, **kwar
                 "startline":     ln,
                 "endline":       ln,
                 "code":          "RP",
-                "category":      "best_practices",
+                "category":      "Best Practices",
                 "weight":        2
             })
 
