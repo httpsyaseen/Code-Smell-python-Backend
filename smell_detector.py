@@ -19,6 +19,7 @@ from detectors.design import (
     nested_if_detector,
     abstract_class_no_methods_detector
 )
+from detectors.semantics import complex_method
 
 # from detectors.best_practices import (
     # reassigning_catch_variables_detector,
@@ -40,8 +41,10 @@ def analyze_code(content, filepath):
     try:
         tree = javalang.parse.parse(content)
         detectors = [
+            complex_method.detect_complex_method_smell,
             # ncss_detector.detect_ncss,
             utility_class_detector.detect_utility_class,
+            
             # useless_overriding_detector.detect_useless_overriding,
             too_many_methods_detector.detect_too_many_methods,
             too_many_fields_detector.detect_too_many_fields,
