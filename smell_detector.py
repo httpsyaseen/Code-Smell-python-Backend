@@ -49,7 +49,6 @@ def analyze_code(content, filepath):
             raw_exception_types_detector.detect_raw_exception_types,
             null_pointer_exception_detector.detect_null_pointer_exception,
             nested_if_detector.detect_nested_if,
-            # abstract_class_no_methods_detector.detect_abstract_class_no_methods,
             reassigning_catch_variables_detector.detect_reassigning_catch_variables,
             reassigning_loop_variables_detector.detect_reassigning_loop_variables,
             reassigning_parameters_detector.detect_reassigning_parameters,
