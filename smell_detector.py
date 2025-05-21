@@ -1,23 +1,18 @@
 import zipfile
 import javalang
 from detectors.design import (
-    # ncss_detector,
     utility_class_detector,
-    useless_overriding_detector,
     too_many_methods_detector,
     too_many_fields_detector,
     switch_density_detector,
-    # excessive_public_counts_detector,
     excessive_parameter_list_detector,
     excessive_imports_detector,
-    # cyclomatic_complexity_detector,
-    # coupling_between_objects_detector,
+    cyclomatic_complexity_detector,
     private_constructors_final_detector,
     unchecked_exceptions_detector,
     raw_exception_types_detector,
     null_pointer_exception_detector,
     nested_if_detector,
-    abstract_class_no_methods_detector
 )
 from detectors.semantics import complex_method
 
@@ -42,24 +37,18 @@ def analyze_code(content, filepath):
         tree = javalang.parse.parse(content)
         detectors = [
             complex_method.detect_complex_method_smell,
-            # ncss_detector.detect_ncss,
             utility_class_detector.detect_utility_class,
-            
-            # useless_overriding_detector.detect_useless_overriding,
             too_many_methods_detector.detect_too_many_methods,
             too_many_fields_detector.detect_too_many_fields,
             switch_density_detector.detect_switch_density,
-            # excessive_public_counts_detector.detect_excessive_public_counts,
             excessive_parameter_list_detector.detect_excessive_parameter_list,
             excessive_imports_detector.detect_excessive_imports,
-            # cyclomatic_complexity_detector.detect_cyclomatic_complexity,
-            # coupling_between_objects_detector.detect_coupling_between_objects,
+            cyclomatic_complexity_detector.detect_cyclomatic_complexity,
             private_constructors_final_detector.detect_private_constructors_final,
             unchecked_exceptions_detector.detect_unchecked_exceptions,
             raw_exception_types_detector.detect_raw_exception_types,
             null_pointer_exception_detector.detect_null_pointer_exception,
             nested_if_detector.detect_nested_if,
-            # abstract_class_no_methods_detector.detect_abstract_class_no_methods,
             # reassigning_catch_variables_detector.detect_reassigning_catch_variables,
             # reassigning_loop_variables_detector.detect_reassigning_loop_variables,
             # reassigning_parameters_detector.detect_reassigning_parameters,
