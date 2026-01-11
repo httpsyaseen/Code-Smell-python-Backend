@@ -1,6 +1,7 @@
 import javalang
 from javalang.ast import walk_tree
 from javalang.tree import StatementExpression, MethodInvocation
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 # methods on ResultSet whose return value must be checked
 _METHODS = {"next", "previous", "first", "last"}
@@ -28,5 +29,5 @@ def detect_result_set_check(node, source_lines, filepath, filename):
         "endline":       line,
         "code":          "RSC",
         "category":      "Best Practices",
-        "weight":        3
+        "weight":        SMELL_CATEGORY_WEIGHTS.get("Result Set Check", 2)
     }]

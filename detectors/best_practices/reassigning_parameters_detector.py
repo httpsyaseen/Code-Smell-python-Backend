@@ -7,6 +7,7 @@ from javalang.tree import (
     Assignment,
     MemberReference,
 )
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def detect_reassigning_parameters(node, source_lines, filepath, filename, **kwargs):
     if not isinstance(node, (MethodDeclaration, ConstructorDeclaration)):
@@ -47,7 +48,7 @@ def detect_reassigning_parameters(node, source_lines, filepath, filename, **kwar
                 "endline":       ln,
                 "code":          "RP",
                 "category":      "Best Practices",
-                "weight":        2
+                "weight":        SMELL_CATEGORY_WEIGHTS.get("Reassigning Parameter", 2)
             })
 
             if reported == params:

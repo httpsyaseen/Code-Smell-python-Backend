@@ -5,6 +5,7 @@ from javalang.tree import (
     Assignment,
 )
 from javalang.ast import walk_tree
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 # Cache full ASTs per file to avoid reparsing
 _ast_cache = {}
@@ -59,7 +60,7 @@ def detect_unused_local_variable(node, source_lines, filepath, filename):
                 "endline":       ln,
                 "code":          "ULV",
                 "category":      "Best Practices",
-                "weight":        3
+                "weight":        SMELL_CATEGORY_WEIGHTS.get("Unused Local Variable", 1)
             })
 
     return violations or None

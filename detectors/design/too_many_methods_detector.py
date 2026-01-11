@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import TOO_MANY_METHODS_THRESHOLD, SMELL_CATEGORY_WEIGHTS
 
 def is_getter(method):
     return (
@@ -26,7 +27,7 @@ def detect_too_many_methods(node, source_lines, filepath, filename):
         method_count = len(non_getter_setter_methods)
       
 
-        if method_count > 10:
+        if method_count > TOO_MANY_METHODS_THRESHOLD:
             start_line = node.position.line if node.position else 1
 
             # Find the actual starting line of the class body (where the first '{' is)
@@ -58,7 +59,7 @@ def detect_too_many_methods(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "TMM",
                 "category": "Design",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Too Many Methods", 3)
             }
 
     return None

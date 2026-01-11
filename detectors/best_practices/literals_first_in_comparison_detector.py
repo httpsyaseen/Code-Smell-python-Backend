@@ -1,6 +1,7 @@
 import javalang
 from javalang.tree import MethodInvocation, Literal
 from javalang.ast import walk_tree
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 # Methods where we want literals first
 _COMPARISONS = {
@@ -44,7 +45,7 @@ def detect_literals_first_in_comparison(node, source_lines, filepath, filename):
             "endline":       ln,
             "code":          "LFSC",
             "category":      "Best Practices",
-            "weight":        3
+            "weight":        SMELL_CATEGORY_WEIGHTS.get("Literals First in Comparison", 1)
         }]
 
     return None

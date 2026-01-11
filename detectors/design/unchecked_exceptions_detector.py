@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def detect_unchecked_exceptions(node, source_lines, filepath, filename):
     if isinstance(node, (javalang.tree.MethodDeclaration, javalang.tree.ConstructorDeclaration)):
@@ -23,6 +24,6 @@ def detect_unchecked_exceptions(node, source_lines, filepath, filename):
                         "endline": end_line,
                         "code": "UCD",
                         "category": "Design",
-                        "weight": 4
+                        "weight": SMELL_CATEGORY_WEIGHTS.get("Unchecked Exceptions", 3)
                     }
     return None

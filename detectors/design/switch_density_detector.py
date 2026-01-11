@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import SWITCH_DENSITY_THRESHOLD, SMELL_CATEGORY_WEIGHTS
 
 def detect_switch_density(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.MethodDeclaration):
@@ -15,7 +16,7 @@ def detect_switch_density(node, source_lines, filepath, filename):
                         else:
                             total_cases += 1  # Single case label
 
-                if total_cases > 10:
+                if total_cases > SWITCH_DENSITY_THRESHOLD:
                     # ✅ Use the position of the switch statement
                     start_line = child.position.line if child.position else (node.position.line if node.position else 1)
 
@@ -35,7 +36,7 @@ def detect_switch_density(node, source_lines, filepath, filename):
                         "endline": end_line,
                         "code": "SWD",
                         "category": "Design",
-                        "weight": 3
+                        "weight": SMELL_CATEGORY_WEIGHTS.get("Switch Density", 3)
                     }
         return None
     return None

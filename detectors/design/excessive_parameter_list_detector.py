@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import EXCESSIVE_PARAMETER_LIST_THRESHOLD, SMELL_CATEGORY_WEIGHTS
 
 def detect_excessive_parameter_list(node, source_lines, filepath, filename):
     # Check if the node is a method or constructor declaration
@@ -10,7 +11,7 @@ def detect_excessive_parameter_list(node, source_lines, filepath, filename):
         # print(f"Detected method/constructor '{node.name}' with {param_count} parameters")
         
         # Threshold check
-        if param_count > 10:
+        if param_count > EXCESSIVE_PARAMETER_LIST_THRESHOLD:
             # Determine start line
             if node.position and node.position.line:
                 start_line = node.position.line
@@ -49,7 +50,7 @@ def detect_excessive_parameter_list(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "EXP",
                 "category": "Design",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Excessive Parameter List", 2)
             }
     
     return None

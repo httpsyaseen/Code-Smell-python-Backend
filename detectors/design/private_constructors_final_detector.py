@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def detect_private_constructors_final(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.ClassDeclaration):
@@ -25,6 +26,6 @@ def detect_private_constructors_final(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "PRV",
                 "category": "Design",
-                "weight": 4
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Private Constructor Check", 1)
             }
     return None

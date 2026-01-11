@@ -1,5 +1,6 @@
 import javalang
 import logging
+from ..thresholds import NESTED_IF_THRESHOLD, SMELL_CATEGORY_WEIGHTS
 
 # Configure logging
 
@@ -50,9 +51,9 @@ def get_first_if_line_of_nested_chain(statement, target_depth=3, current_depth=0
 def detect_nested_if(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.MethodDeclaration):
         max_depth = get_max_if_depth(node.body)
-        if max_depth >= 3:
+        if max_depth >= NESTED_IF_THRESHOLD:
             # Find the first if statement line in the nested if chain
-            start_line = get_first_if_line_of_nested_chain(node.body, target_depth=3)
+            start_line = get_first_if_line_of_nested_chain(node.body, target_depth=NESTED_IF_THRESHOLD)
             if start_line is None:
                 start_line = node.position.line if node.position else 1
 
@@ -72,6 +73,6 @@ def detect_nested_if(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "NED",
                 "category": "Design",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Nested If", 2)
             }
     return None

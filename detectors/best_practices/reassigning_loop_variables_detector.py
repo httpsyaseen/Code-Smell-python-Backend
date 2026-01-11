@@ -8,6 +8,7 @@ from javalang.tree import (
     MemberReference,
     Assignment
 )
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def get_variable_usages(node, var_names):
     usages = []
@@ -83,7 +84,7 @@ def detect_reassigning_loop_variables(node, source_lines, filepath, filename,
                     "endline":   line,
                     "code":      "RLV",
                     "category":  "Best Practices",
-                    "weight":    3
+                    "weight":    SMELL_CATEGORY_WEIGHTS.get("Reassigning Loop Variable", 2)
                 })
 
     return violations or None 

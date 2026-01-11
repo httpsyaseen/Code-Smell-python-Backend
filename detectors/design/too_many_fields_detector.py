@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import TOO_MANY_FIELDS_THRESHOLD, SMELL_CATEGORY_WEIGHTS
 
 def detect_too_many_fields(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.ClassDeclaration):
@@ -10,7 +11,7 @@ def detect_too_many_fields(node, source_lines, filepath, filename):
 
         field_count = len(non_static_non_final_fields)
         # print(field_count)
-        if field_count > 15:
+        if field_count > TOO_MANY_FIELDS_THRESHOLD:
             start_line = node.position.line if node.position else 1
             brace_count = 0
             end_line = start_line
@@ -30,7 +31,7 @@ def detect_too_many_fields(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "TMF",
                 "category": "Design",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Too Many Fields", 3)
             }
 
     return None

@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def detect_utility_class(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.ClassDeclaration):
@@ -29,6 +30,6 @@ def detect_utility_class(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "UTD",
                 "category": "Design",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Utility Class", 1)
             }
     return None

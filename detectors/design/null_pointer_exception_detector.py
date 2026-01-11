@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def detect_null_pointer_exception(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.ThrowStatement):
@@ -15,6 +16,6 @@ def detect_null_pointer_exception(node, source_lines, filepath, filename):
                         "endline": start_line,
                         "code": "NPD",
                         "category": "Design",
-                        "weight": 4
+                        "weight": SMELL_CATEGORY_WEIGHTS.get("Throwing NullPointerException", 4)
                     }
     return None

@@ -1,11 +1,12 @@
 import javalang
+from ..thresholds import EXCESSIVE_IMPORTS_THRESHOLD, SMELL_CATEGORY_WEIGHTS
 
 def detect_excessive_imports(node, source_lines, filepath, filename):
     if isinstance(node, javalang.tree.CompilationUnit):
         import_decls = node.imports
         import_count = len(import_decls)
 
-        if import_count > 30:
+        if import_count > EXCESSIVE_IMPORTS_THRESHOLD:
             # Collect line numbers for all imports that have position info
             import_lines = [imp.position.line for imp in import_decls if imp.position]
 
@@ -24,6 +25,6 @@ def detect_excessive_imports(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "EXI",
                 "category": "Design",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Excessive Imports", 2)
             }
     return None

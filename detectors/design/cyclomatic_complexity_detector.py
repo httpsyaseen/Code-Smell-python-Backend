@@ -1,4 +1,5 @@
 import javalang
+from ..thresholds import CYCLOMATIC_COMPLEXITY_THRESHOLD, SMELL_CATEGORY_WEIGHTS
 
 def detect_cyclomatic_complexity(node, source_lines, filepath, filename):
     smells = []
@@ -24,7 +25,7 @@ def detect_cyclomatic_complexity(node, source_lines, filepath, filename):
             if brace_count == 0 and '}' in line:
                 end_line = i
                 break
-        if isinstance(node, javalang.tree.MethodDeclaration) and complexity > 10:
+        if isinstance(node, javalang.tree.MethodDeclaration) and complexity > CYCLOMATIC_COMPLEXITY_THRESHOLD:
             smells.append({
                 "codeSmellType": "High Cyclomatic Complexity (Method)",
                 "filename": filename,
@@ -33,7 +34,7 @@ def detect_cyclomatic_complexity(node, source_lines, filepath, filename):
                 "endline": end_line,
                 "code": "CYC",
                 "category": "Design",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("High Cyclomatic Complexity (Method)", 3)
             })
 
     return smells

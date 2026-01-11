@@ -7,11 +7,20 @@ Similar structure to complex_method.py
 
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import os
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
-# Load model once from feature-envy folder
-model_path = "feature-envy"
-tokenizer = AutoTokenizer.from_pretrained("microsoft/graphcodebert-base")
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
+# Get the directory of the current file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+
+# Load model from local directories
+model_path = os.path.join(project_root, "feature-envy")
+tokenizer_path = os.path.join(project_root, "feature-envy")
+
+# Load tokenizer and model from local paths
+tokenizer = AutoTokenizer.from_pretrained(tokenizer_path, local_files_only=True)
+model = AutoModelForSequenceClassification.from_pretrained(model_path, local_files_only=True)
 
 # Optimization: Set model to eval mode and use GPU if available
 model.eval()
@@ -117,7 +126,7 @@ def detect_feature_envy_smell(node, source_lines, filepath, filename):
                 "endline": sample['end_line'],
                 "code": "FE",
                 "category": "Semantic Based",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Feature Envy", 3)
             })
     
     return results

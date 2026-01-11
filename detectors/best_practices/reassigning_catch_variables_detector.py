@@ -1,5 +1,6 @@
 import javalang
 from javalang.ast import walk_tree
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def detect_reassigning_catch_variables(node, source_lines, filepath, filename, allow_private=True):
     # Ensure the node is a CatchClause
@@ -30,7 +31,7 @@ def detect_reassigning_catch_variables(node, source_lines, filepath, filename, a
                         "endline": start_line,
                         "code": "RCV",
                         "category": "Best Practices",
-                        "weight": 3
+                        "weight": SMELL_CATEGORY_WEIGHTS.get("Reassigning Catch Variable", 2)
                     })
 
     return violations if violations else None

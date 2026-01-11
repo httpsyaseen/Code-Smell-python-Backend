@@ -1,6 +1,7 @@
 import javalang
 from javalang.tree import InterfaceDeclaration, MethodDeclaration, Annotation
 from javalang.ast import walk_tree
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 def detect_implicit_functional_interface(node, source_lines, filepath, filename):
     if not isinstance(node, InterfaceDeclaration):
@@ -51,7 +52,7 @@ def detect_implicit_functional_interface(node, source_lines, filepath, filename)
             "endline":       ln,
             "code":          "IFI",
             "category":      "Best Practices",
-            "weight":        2
+            "weight":        SMELL_CATEGORY_WEIGHTS.get("Implicit Functional Interface", 1)
         }]
 
     return None

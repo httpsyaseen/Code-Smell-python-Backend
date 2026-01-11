@@ -8,6 +8,7 @@ from javalang.tree import (
     MemberReference,
     BinaryOperation,
 )
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
 # Which logging calls we care about
 LOG_LEVELS = {
@@ -88,5 +89,5 @@ def detect_expensive_log_statement(node, source_lines, filepath, filename, **kwa
         "endline":       ln,
         "code":          "ELS",
         "category":      "Best Practices",
-        "weight":        2
+        "weight":        SMELL_CATEGORY_WEIGHTS.get("Expensive Log Statement", 1)
     }]

@@ -1,11 +1,25 @@
 
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import os
+from ..thresholds import SMELL_CATEGORY_WEIGHTS
 
-# Load model once
-model_path = "trained_model"  
-tokenizer = AutoTokenizer.from_pretrained("microsoft/graphcodebert-base")
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
+# Get the directory of the current file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+
+# Load model from local directory
+model_path = os.path.join(project_root, "complex-method")
+# Use feature-envy tokenizer since complex-method doesn't have tokenizer files
+tokenizer_path = os.path.join(project_root, "feature-envy")
+
+try:
+    # Load tokenizer and model from local paths
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_path, local_files_only=True)
+    model = AutoModelForSequenceClassification.from_pretrained(model_path, local_files_only=True)
+except Exception as e:
+    print(f"Error loading models: {e}")
+    raise
 
 # Optimization: Set model to eval mode and use GPU if available
 model.eval()
@@ -89,7 +103,7 @@ def detect_complex_method_smell(node, source_lines, filepath, filename):
                 "endline": start_line + code_snippet.count('\n'),
                 "code": "CM",
                 "category": "Sematic Based",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Complex Method", 3)
             }
 
     return None
@@ -137,7 +151,7 @@ def detect_complex_method_smell_batch(node, source_lines, filepath, filename):
                 "endline": method_info['end_line'],
                 "code": "CM",
                 "category": "Sematic Based",
-                "weight": 3
+                "weight": SMELL_CATEGORY_WEIGHTS.get("Complex Method", 3)
             })
     
     return results
